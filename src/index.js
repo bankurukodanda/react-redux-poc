@@ -3,10 +3,18 @@ import ReactDOM from 'react-dom';
 import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
-
+import { createStore, applyMiddleware} from 'redux';
+import { Provider } from 'react-redux';
+import allReducers from './reducer/index.js'
+import { composeWithDevTools } from 'redux-devtools-extension'
+import ReduxPromise from "redux-promise";
+let store  = createStore(allReducers, composeWithDevTools(applyMiddleware(ReduxPromise)))
 ReactDOM.render(
   <React.StrictMode>
+  <Provider store={store}>
     <App />
+  </Provider>
+    
   </React.StrictMode>,
   document.getElementById('root')
 );
